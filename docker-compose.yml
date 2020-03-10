@@ -4,6 +4,18 @@ services:
         image: 'redis'
         restart: always
     py-app:
-        build: .
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
         ports: [ "8000:8000" ]
-        
+        volumes: 
+            - .:/opt
+    test:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        restart: "no"
+        volumes: 
+            - .:/opt
+        command: [ python, app.py, test]
+                    
