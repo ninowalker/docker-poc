@@ -8,7 +8,7 @@ COPY Pipfile Pipfile
 # COPY Pipfile.lock Pipfile.lock
 
 # -- Install dependencies:
-RUN set -ex && pipenv install --deploy --system --skip-lock
+RUN set -ex && pipenv install --dev --deploy --system --skip-lock
 
 COPY ./ ./
 

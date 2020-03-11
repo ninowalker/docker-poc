@@ -17,5 +17,5 @@ services:
         restart: "no"
         volumes: 
             - .:/opt
-        command: [ python, app.py, test]
+        command: [ pytest, test ]
                     

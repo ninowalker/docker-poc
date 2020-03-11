@@ -6,3 +6,7 @@ name = "pypi"
 [packages]
 requests = "*"
 redis = "==3.4.1"
+
+[dev-packages]
+pylint = "*"
+pytest = "*"
