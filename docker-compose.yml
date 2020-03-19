@@ -3,19 +3,19 @@ services:
     redis-server:
         image: 'redis'
         restart: always
-    py-app:
+    app: &app
         build:
             context: .
             dockerfile: Dockerfile.dev
+        depends_on:
+          - redis-server
         ports: [ "8000:8000" ]
         volumes: 
             - .:/opt
+    run: 
+        <<: *app
     test:
-        build:
-            context: .
-            dockerfile: Dockerfile.dev
+        <<: *app
         restart: "no"
-        volumes: 
-            - .:/opt
         command: [ pytest, test ]
                     
