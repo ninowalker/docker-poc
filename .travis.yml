@@ -1,0 +1,19 @@
+sudo: required
+language: python
+services:
+    - docker
+
+before_install:
+    - docker build -t test -f Dockerfile.dev .
+
+script:
+    - docker run test pytest test
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: docker-poc
+  env: DockerPoc-env
+  bucket_name: elasticbeanstalk-us-east-1-119873632302
+  bucket_path: docker
+  on: { branch: master }
